@@ -1,6 +1,10 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("maven-publish")
 }
 
 android {
@@ -31,6 +35,35 @@ android {
         jvmTarget = "1.8"
     }
 }
+
+val githubProperties = Properties()
+githubProperties.load(FileInputStream(rootProject.file("github.properties")))
+
+publishing{
+    publications{
+        register<MavenPublication>("release"){
+            groupId = "com.jhj0517"
+            artifactId = "koreanchoseongsearch"
+            version = "1.0.0"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "ChoseongSearch"
+            url = uri("https://maven.pkg.github.com/jhj0517/KoreanChoseongSearch")
+            credentials{
+                username = githubProperties.getProperty("gpr.usr") ?: System.getenv("GITHUB_USERNAME")
+                password = githubProperties.getProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
+
 
 dependencies {
 
