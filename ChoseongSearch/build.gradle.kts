@@ -36,10 +36,6 @@ android {
 publishing{
     publications{
         register<MavenPublication>("release"){
-            groupId = "com.jhj0517"
-            artifactId = "koreanchoseongsearch"
-            version = "1.0.4"
-
             afterEvaluate {
                 from(components["release"])
             }
