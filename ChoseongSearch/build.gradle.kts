@@ -36,6 +36,10 @@ android {
 publishing{
     publications{
         register<MavenPublication>("release"){
+            groupId = "com.jhj0517"
+            artifactId = "koreanchoseongsearch"
+            version = "1.0.4"
+
             afterEvaluate {
                 from(components["release"])
             }
@@ -45,7 +49,6 @@ publishing{
 
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
