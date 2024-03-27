@@ -27,12 +27,15 @@ fun compare(query:String, target:String) :Boolean {
                 return false
             }
         }
-        return true
+
+        val filteredTarget = target.filterIndexed { i, _ -> i !in choIndexes }
+        val filteredQuery = query.filterIndexed { i, _ -> i !in choIndexes }
+
+        return filteredTarget.contains(filteredQuery)
     }
 
     return target.contains(query)
 }
-
 private fun findChoIndexes(word:String):ArrayList<Int>{
     val choIndexes = ArrayList<Int>()
     for( (i, w) in word.chunked(1).withIndex()){
