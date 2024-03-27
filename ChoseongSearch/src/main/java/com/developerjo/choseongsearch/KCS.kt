@@ -9,7 +9,7 @@ private val JOONG = listOf("ㅏ","ㅐ","ㅑ","ㅒ","ㅓ","ㅔ","ㅕ","ㅖ","ㅗ"
 private val JONG = listOf("","ㄱ","ㄲ","ㄳ","ㄴ","ㄵ","ㄶ","ㄷ","ㄹ","ㄺ","ㄻ","ㄼ", "ㄽ","ㄾ","ㄿ","ㅀ","ㅁ","ㅂ","ㅄ","ㅅ","ㅆ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ")
 
 /*
-Korean unicode formula = (cho * 21 + jung) * 28 + jong + 0xAC00
+Hangul Unicode Calculation Formula =  0xAC00 + (ChoSeong * 21 + JoongSeong) * 28 + JongSeong
 */
 
 fun compare(query:String, target:String) :Boolean {
@@ -47,37 +47,54 @@ private fun findChoIndexes(word:String):ArrayList<Int>{
 }
 
 fun getCho(word:String):String{
-    var word_cho = word
+    var cho = ""
+    for(w in word.chunked(1)){
+        if(w in CHO){
+            cho += w
+            continue
+        } else if (w in JOONG || w in JONG){
+            cho += " "
+            continue
+        }
 
-    if(isHangul(word.single())){
-        val charuni = word[0]
-        val cho_uniIndex = ((charuni.code-0xAC00) / 28 /21).toChar().code
-        word_cho = CHO[cho_uniIndex]
+        val uniCode = ((w.first().code - 0xAC00)/28/21).toChar().code
+        cho += CHO[uniCode]
     }
-
-    return word_cho
+    return cho
 }
 
 fun getJoong(word:String):String{
-    var word_joong = word
+    var joong = ""
+    for(w in word.chunked(1)){
+        if(w in JOONG){
+            joong += w
+            continue
+        } else if (w in CHO || w in JONG){
+            joong += " "
+            continue
+        }
 
-    if(isHangul(word.single())){
-        val charuni = word[0]
-        val joong_uniIndex = ((charuni.code-0xAC00) / 28 %21).toChar().code
-        word_joong = JOONG[joong_uniIndex]
+        val uniCode = ((w.first().code-0xAC00)/28%21).toChar().code
+        joong += JOONG[uniCode]
     }
-    return word_joong
+    return joong
 }
 
 fun getJong(word:String):String{
-    var word_jong = word
+    var jong = ""
+    for(w in word.chunked(1)){
+        if(w in JONG){
+            jong += w
+            continue
+        } else if (w in CHO || w in JOONG){
+            jong += " "
+            continue
+        }
 
-    if(isHangul(word.single())){
-        val charuni = word[0]
-        val jong_uniIndex = ((charuni.code-0xAC00) %28).toChar().code
-        word_jong = JONG[jong_uniIndex]
+        val uniCode = ((w.first().code-44032)%28).toChar().code
+        jong += JONG[uniCode]
     }
-    return word_jong
+    return jong
 }
 
 fun isHangul(word: Char): Boolean {
