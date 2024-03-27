@@ -63,6 +63,9 @@ fun compare(query:String, target:String) :Boolean {
  * @sample getCho(word="헤헤ㅋㅋ") returns "ㅎㅎㅋㅋ"
  */
 fun getCho(word:String):String{
+    if(!isHangul(word)){
+        return " "
+    }
     var cho = ""
     for(w in word.chunked(1)){
         if(w in CHO){
@@ -89,6 +92,9 @@ fun getCho(word:String):String{
  * @sample getCho(word="헤헤ㅋㅋ") returns "ㅔㅔ  "
  */
 fun getJoong(word:String):String{
+    if(!isHangul(word)){
+        return " "
+    }
     var joong = ""
     for(w in word.chunked(1)){
         if(w in JOONG){
@@ -115,6 +121,9 @@ fun getJoong(word:String):String{
  * @sample getCho(word="헐개웃겨ㅋ") returns "ㅎ ㅅ "
  */
 fun getJong(word:String):String{
+    if(!isHangul(word)){
+        return " "
+    }
     var jong = ""
     for(w in word.chunked(1)){
         if(w in JONG){
