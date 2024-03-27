@@ -9,7 +9,7 @@ private val JOONG = listOf("ㅏ","ㅐ","ㅑ","ㅒ","ㅓ","ㅔ","ㅕ","ㅖ","ㅗ"
 private val JONG = listOf("","ㄱ","ㄲ","ㄳ","ㄴ","ㄵ","ㄶ","ㄷ","ㄹ","ㄺ","ㄻ","ㄼ", "ㄽ","ㄾ","ㄿ","ㅀ","ㅁ","ㅂ","ㅄ","ㅅ","ㅆ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ")
 
 /*
-Hangul Unicode Calculation Formula =  0xAC00 + (ChoSeong * 21 + JoongSeong) * 28 + JongSeong
+Hangul Unicode Formula =  0xAC00 + (ChoSeong * 21 + JoongSeong) * 28 + JongSeong
 */
 
 fun compare(query:String, target:String) :Boolean {
