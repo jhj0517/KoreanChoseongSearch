@@ -7,6 +7,7 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.developerjo.choseongsearch.KCS
 import com.developerjo.library.databinding.ItemExampleBinding
 import com.developerjo.library.models.ExampleData
 
@@ -21,8 +22,10 @@ class SearchAdapter
             val filteredList = if (input.isEmpty()) {
                 originList
             } else {
-                originList.filter { it.name.lowercase().contains(input) }
+                originList.filter { KCS.compare(query = input.toString().lowercase(),
+                                                target = it.name.lowercase()) }
             }
+
             return FilterResults().apply { values = filteredList }
         }
 
