@@ -16,17 +16,18 @@ class DataViewModel: ViewModel() {
     private fun fetchData() {
         val fetched = ArrayList(
             listOf(
-                ExampleData("바나나"),
-                ExampleData("바람"),
-                ExampleData("박수"),
-                ExampleData("배"),
                 ExampleData("백화점"),
-                ExampleData("버섯"),
-                ExampleData("별"),
-                ExampleData("병원"),
-                ExampleData("보라색"),
-                ExampleData("부엌"),
                 ExampleData("박하사탕"),
+                ExampleData("백합꽃"),  // Lily
+                ExampleData("박하음료"),
+                ExampleData("박카스"),
+                ExampleData("백화요란"),
+                ExampleData("버섯"),
+                ExampleData("포도"),
+                ExampleData("사랑"),
+                ExampleData("우정"),
+                ExampleData("부엌"),
+                ExampleData("딸기"),
             )
         )
         _exampleData.value = fetched
