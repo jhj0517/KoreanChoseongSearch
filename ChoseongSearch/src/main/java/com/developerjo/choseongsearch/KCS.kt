@@ -77,8 +77,8 @@ object KCS {
                 continue
             }
 
-            val uniCode = ((w.first().code - 0xAC00)/28/21).toChar().code
-            cho += CHO[uniCode]
+            val choIndex = ((w.first().code - 0xAC00)/28/21).toChar().code
+            cho += CHO[choIndex]
         }
         return cho
     }
@@ -106,8 +106,8 @@ object KCS {
                 continue
             }
 
-            val uniCode = ((w.first().code-0xAC00)/28%21).toChar().code
-            joong += JOONG[uniCode]
+            val joongIndex = ((w.first().code-0xAC00)/28%21).toChar().code
+            joong += JOONG[joongIndex]
         }
         return joong
     }
@@ -135,8 +135,8 @@ object KCS {
                 continue
             }
 
-            val uniCode = ((w.first().code-44032)%28).toChar().code
-            jong += JONG[uniCode]
+            val jongIndex = ((w.first().code-44032)%28).toChar().code
+            jong += JONG[jongIndex]
         }
         return jong
     }
