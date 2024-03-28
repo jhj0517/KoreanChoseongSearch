@@ -1,6 +1,6 @@
 [versions]
 agp = "8.3.0"
-koreanchoseongsearch = "1.0.14"
+koreanchoseongsearch = "1.0.16"
 kotlin = "1.9.0"
 coreKtx = "1.12.0"
 junit = "4.13.2"
