@@ -20,6 +20,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "library"
+rootProject.name = "ChoseongSearch"
 include(":sample")
 include(":library")
