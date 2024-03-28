@@ -21,5 +21,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "library"
-include(":app")
-include(":ChoseongSearch")
+include(":sample")
+include(":library")
