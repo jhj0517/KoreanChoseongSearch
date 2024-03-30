@@ -5,7 +5,7 @@
 https://github.com/jhj0517/KoreanChoseongSearch/assets/97279763/58f89429-b060-4258-bf43-8e02b126208b
 
 # Installation
-1) `settings.gradle`  
+1) `settings.gradle` 에 maven url 추가 
 ```gradle
 pluginManagement {
   //~
