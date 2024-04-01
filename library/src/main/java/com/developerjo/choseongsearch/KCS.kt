@@ -8,6 +8,7 @@ package com.developerjo.choseongsearch
  * The Unicode for complete Hangul syllables is calculated using the formula:
  * Complete_Hangul = 0xAC00 + (21 * 28 * ChoSeong) + (28 * JoongSeong) + JongSeong,
  * where 0xAC00 is the starting Unicode point for Hangul, equal to 44032 in decimal.
+ * And 28 equals to the number of JongSeongs, 21 equals to the number of JoongSeongs.
  */
 
 object KCS {
@@ -16,7 +17,7 @@ object KCS {
 
     private val CHO = listOf("ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ", "ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ")
     private val JOONG = listOf("ㅏ","ㅐ","ㅑ","ㅒ","ㅓ","ㅔ","ㅕ","ㅖ","ㅗ","ㅘ", "ㅙ","ㅚ","ㅛ","ㅜ","ㅝ","ㅞ","ㅟ","ㅠ","ㅡ","ㅢ","ㅣ")
-    private val JONG = listOf("","ㄱ","ㄲ","ㄳ","ㄴ","ㄵ","ㄶ","ㄷ","ㄹ","ㄺ","ㄻ","ㄼ", "ㄽ","ㄾ","ㄿ","ㅀ","ㅁ","ㅂ","ㅄ","ㅅ","ㅆ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ")
+    private val JONG = listOf(" ","ㄱ","ㄲ","ㄳ","ㄴ","ㄵ","ㄶ","ㄷ","ㄹ","ㄺ","ㄻ","ㄼ", "ㄽ","ㄾ","ㄿ","ㅀ","ㅁ","ㅂ","ㅄ","ㅅ","ㅆ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ")
 
     /**
      * Determines if the query string matches the target string based on Choseong search logic.
@@ -64,11 +65,13 @@ object KCS {
      * @sample getCho(word="헤헤ㅋㅋ") returns "ㅎㅎㅋㅋ"
      */
     fun getCho(word:String):String{
-        if(!isHangul(word)){
-            return " "
-        }
         var cho = ""
         for(w in word.chunked(1)){
+            if(!isHangul(w)){
+                cho += " "
+                continue
+            }
+
             if(w in CHO){
                 cho += w
                 continue
@@ -77,7 +80,7 @@ object KCS {
                 continue
             }
 
-            val choIndex = ((w.first().code - 0xAC00)/28/21).toChar().code
+            val choIndex = (w.first().code - HANGUL_UNICODE_START)/(JONG.size*JOONG.size)
             cho += CHO[choIndex]
         }
         return cho
@@ -93,11 +96,13 @@ object KCS {
      * @sample getCho(word="헤헤ㅋㅋ") returns "ㅔㅔ  "
      */
     fun getJoong(word:String):String{
-        if(!isHangul(word)){
-            return " "
-        }
         var joong = ""
         for(w in word.chunked(1)){
+            if(!isHangul(w)){
+                joong += " "
+                continue
+            }
+
             if(w in JOONG){
                 joong += w
                 continue
@@ -106,7 +111,7 @@ object KCS {
                 continue
             }
 
-            val joongIndex = ((w.first().code-0xAC00)/28%21).toChar().code
+            val joongIndex = (w.first().code-HANGUL_UNICODE_START)/JONG.size%JOONG.size
             joong += JOONG[joongIndex]
         }
         return joong
@@ -122,12 +127,14 @@ object KCS {
      * @sample getCho(word="헐개웃겨ㅋ") returns "ㅎ ㅅ "
      */
     fun getJong(word:String):String{
-        if(!isHangul(word)){
-            return " "
-        }
         var jong = ""
         for(w in word.chunked(1)){
-            if(w in JONG){
+            if(!isHangul(w)){
+                jong += " "
+                continue
+            }
+
+            if(w in JONG && w !in CHO){
                 jong += w
                 continue
             } else if (w in CHO || w in JOONG){
@@ -135,7 +142,7 @@ object KCS {
                 continue
             }
 
-            val jongIndex = ((w.first().code-44032)%28).toChar().code
+            val jongIndex = (w.first().code-HANGUL_UNICODE_START)%JONG.size
             jong += JONG[jongIndex]
         }
         return jong
