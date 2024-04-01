@@ -77,7 +77,7 @@ object KCS {
                 continue
             }
 
-            val choIndex = (w.first().code - HANGUL_UNICODE_START)/(28*21)
+            val choIndex = (w.first().code - HANGUL_UNICODE_START)/(JONG.size*JOONG.size)
             cho += CHO[choIndex]
         }
         return cho
@@ -106,7 +106,7 @@ object KCS {
                 continue
             }
 
-            val joongIndex = (w.first().code-HANGUL_UNICODE_START)/28%21
+            val joongIndex = (w.first().code-HANGUL_UNICODE_START)/JONG.size%JOONG.size
             joong += JOONG[joongIndex]
         }
         return joong
@@ -135,7 +135,7 @@ object KCS {
                 continue
             }
 
-            val jongIndex = (w.first().code-HANGUL_UNICODE_START)%28
+            val jongIndex = (w.first().code-HANGUL_UNICODE_START)%JONG.size
             jong += JONG[jongIndex]
         }
         return jong
