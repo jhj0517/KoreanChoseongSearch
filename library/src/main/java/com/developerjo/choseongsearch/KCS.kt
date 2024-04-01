@@ -64,11 +64,13 @@ object KCS {
      * @sample getCho(word="헤헤ㅋㅋ") returns "ㅎㅎㅋㅋ"
      */
     fun getCho(word:String):String{
-        if(!isHangul(word)){
-            return " "
-        }
         var cho = ""
         for(w in word.chunked(1)){
+            if(!isHangul(w)){
+                cho += " "
+                continue
+            }
+
             if(w in CHO){
                 cho += w
                 continue
@@ -93,11 +95,13 @@ object KCS {
      * @sample getCho(word="헤헤ㅋㅋ") returns "ㅔㅔ  "
      */
     fun getJoong(word:String):String{
-        if(!isHangul(word)){
-            return " "
-        }
         var joong = ""
         for(w in word.chunked(1)){
+            if(!isHangul(w)){
+                joong += " "
+                continue
+            }
+
             if(w in JOONG){
                 joong += w
                 continue
@@ -122,11 +126,13 @@ object KCS {
      * @sample getCho(word="헐개웃겨ㅋ") returns "ㅎ ㅅ "
      */
     fun getJong(word:String):String{
-        if(!isHangul(word)){
-            return " "
-        }
         var jong = ""
         for(w in word.chunked(1)){
+            if(!isHangul(w)){
+                jong += " "
+                continue
+            }
+
             if(w in JONG && w !in CHO){
                 jong += w
                 continue
