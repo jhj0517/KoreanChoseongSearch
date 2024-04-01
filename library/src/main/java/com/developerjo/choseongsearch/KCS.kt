@@ -127,7 +127,7 @@ object KCS {
         }
         var jong = ""
         for(w in word.chunked(1)){
-            if(w in JONG){
+            if(w in JONG && w !in CHO){
                 jong += w
                 continue
             } else if (w in CHO || w in JOONG){
