@@ -25,11 +25,11 @@ dependencies {
     implementation("com.github.jhj0517:KoreanChoseongSearch:1.0.16")
 }
 ```
-JitPack 라이브러리를 추가하는 법은 `Gradle` 버전에 따라 조금씩 다를 수 있습니다. 
+
+위 예시는 `Gradle` 8.4 버전 기준으로, JitPack 라이브러리를 추가하는 방법은 `Gradle` 버전에 따라 조금씩 다를 수 있습니다. 
 
 예:) 낮은 버전의 `Gradle` 에서는 프로젝트 레벨의 `build.gradle` 에 maven url 을 추가함.
 
-위 예시는 `Gradle` 8.4 버전 기준입니다.
 
 # Usage
 1. 검색
