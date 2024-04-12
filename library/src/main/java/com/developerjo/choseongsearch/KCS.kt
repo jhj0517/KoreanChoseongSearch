@@ -4,11 +4,6 @@ package com.developerjo.choseongsearch
  * This library is designed to implement Choseong Search Logic, which is particularly useful for handling Korean text searches by their initial consonants (Choseong).
  * It includes the [compare] function, allowing for Korean Choseong-based search.
  * It features functions like [getCho], a function dedicated to extracting only the Choseong from given words.
- *
- * The Unicode for complete Hangul syllables is calculated using the formula:
- * Complete_Hangul = 0xAC00 + (21 * 28 * ChoSeong) + (28 * JoongSeong) + JongSeong,
- * where 0xAC00 is the starting Unicode point for Hangul, equal to 44032 in decimal.
- * And 28 equals to the number of JongSeongs, 21 equals to the number of JoongSeongs.
  */
 
 object KCS {
