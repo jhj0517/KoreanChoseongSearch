@@ -2,7 +2,8 @@
 한글 초성 검색 기능을 위한 라이브러리입니다. ([구버전](https://github.com/jhj0517/KoreanChosungSearch))
 
 # Demo
-https://github.com/jhj0517/KoreanChoseongSearch/assets/97279763/58f89429-b060-4258-bf43-8e02b126208b
+![demo](https://github.com/jhj0517/KoreanChoseongSearch/assets/97279763/3bfbf3d9-b0cc-4ec7-b395-336c919a05ab)
+
 
 # Installation
 1) `settings.gradle` 에 maven url 추가 
