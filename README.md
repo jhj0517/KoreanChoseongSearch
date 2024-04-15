@@ -1,5 +1,5 @@
 # KoreanChoseongSearch
-한글 초성 검색 기능을 위한 라이브러리입니다. ([구버전](https://github.com/jhj0517/KoreanChosungSearch))
+한글 초성 검색 기능을 위한 라이브러리입니다.
 
 # Demo
 ![demo](https://github.com/jhj0517/KoreanChoseongSearch/assets/97279763/3bfbf3d9-b0cc-4ec7-b395-336c919a05ab)
