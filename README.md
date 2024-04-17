@@ -6,31 +6,23 @@
 
 
 # Installation
-1) `settings.gradle` 에 maven url 추가 
+1) `settings.gradle`
 ```gradle
-pluginManagement {
-  //~
-}
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
-        mavenCentral()
+        // ~
         maven { url=uri("https://jitpack.io") }
     }
 }
 ```
-2) 모듈 레벨의 `build.gradle`
+2) `build.gradle` (모듈)
 ```gradle
 dependencies {
     implementation("com.github.jhj0517:KoreanChoseongSearch:1.0.16")
 }
 ```
 
-위 예시는 `Gradle` 8.4 버전 기준으로, JitPack 라이브러리를 추가하는 방법은 `Gradle` 버전에 따라 조금씩 다를 수 있습니다. 
-
-예:) 낮은 버전의 `Gradle` 에서는 프로젝트 레벨의 `build.gradle` 에 maven url 을 추가함.
-
+`Gradle` 8.4 보다 낮은 버전에서는 `settings.gradle`이 아닌 프로젝트 레벨의 `build.gradle` 에 jitpack URL 을 추가하시면 됩니다.
 
 # Usage
 1. 검색
