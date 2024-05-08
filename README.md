@@ -18,7 +18,7 @@ dependencyResolutionManagement {
 2) `build.gradle` (모듈)
 ```gradle
 dependencies {
-    implementation("com.github.jhj0517:KoreanChoseongSearch:1.0.16")
+    implementation("com.github.jhj0517:KoreanChoseongSearch:1.0.18")
 }
 ```
 
